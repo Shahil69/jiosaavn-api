@@ -1,6 +1,17 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [{ "source": "(.*)", "destination": "/api" }],
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/api"
+    }
+  ],
   "regions": ["bom1"],
   "outputDirectory": "dist",
   "headers": [
@@ -33,5 +44,12 @@
         }
       ]
     }
-  ]
+  ],
+  "projectSettings": {
+    "framework": "node",
+    "buildCommand": "bun install && bun run build",
+    "devCommand": "bun run dev",
+    "installCommand": "bun install",
+    "outputDirectory": "dist"
+  }
 }
